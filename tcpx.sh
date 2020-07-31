@@ -5,12 +5,12 @@ export PATH
 #=================================================
 #	System Required: CentOS 6/7/8,Debian 8/9/10,ubuntu 16/18/19
 #	Description: BBR+BBRplus+Lotserver
-#	Version: 1.3.2.30
+#	Version: 1.3.2.38
 #	Author: 千影,cx9208,YLX
 #	更新内容及反馈:  https://blog.ylx.me/archives/783.html
 #=================================================
 
-sh_ver="1.3.2.30"
+sh_ver="1.3.2.38"
 github="github.000060000.xyz"
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
@@ -41,13 +41,13 @@ installbbr(){
 		
 		elif [[ ${version} = "7" ]]; then
 			if [[ ${bit} = "x86_64" ]]; then
-				wget -N -O kernel-headers-c7.rpm https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EW1QJB1YjWVAqh476_nDTt8BGXthR8r6yZgKNtxiUnkhqw?download=1
-				wget -N -O kernel-c7.rpm https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EbQeSmPPMfRIrDgQcvhJgsgBpyJgAVRY1GZptaYlsziyig?download=1
+				wget -N -O kernel-headers-c7.rpm https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/Eaib8zncs31BjxevUF7cXHwBVkU8uzoSmMo1YfaJ2PL4tQ?download=1
+				wget -N -O kernel-c7.rpm https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EYPrdrXr-apKpMReygtko_QBMDpNx-RNEgs_3u6NYssoPg?download=1
 
 				yum install -y kernel-c7.rpm
 				yum install -y kernel-headers-c7.rpm
 			
-				#kernel_version="5.6.12"
+				kernel_version="5.7.7"
 			else
 				echo -e "${Error} 还在用32位内核，别再见了 !" && exit 1
 			fi	
@@ -91,13 +91,13 @@ installbbr(){
 				fi
 			elif [[ ${version} = "10" ]]; then
 				if [[ ${bit} = "x86_64" ]]; then
-					wget -N -O linux-image-d10.deb https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/ET2PkFkQeSFMtpiIhK58xaoB01aH51XFPcMTv-OGCP92gA?download=1
-					wget -N -O linux-headers-d10.deb https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/Ec-uNmSW0iBOmUKbu-w2iS0BspktPBqgRjPMIqXcConmmA?download=1
+					wget -N -O linux-image-d10.deb https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EX1N_JVwmSJFs4RQ7LqgQzcBurXyK2qUV9EnjYVWqGMs3Q?download=1
+					wget -N -O linux-headers-d10.deb https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EX4OVNaKJFtOhOH8US25-lEBeIr5WOi2rJGI55cTazMhdQ?download=1
 				
 					dpkg -i linux-image-d10.deb
 					dpkg -i linux-headers-d10.deb
 				
-					#kernel_version="5.6.12"
+					kernel_version="5.7.7"
 				else
 					echo -e "${Error} 还在用32位内核，别再见了 !" && exit 1
 				fi
@@ -266,13 +266,13 @@ installxanmod(){
 	if [[ "${release}" == "centos" ]]; then
 		if [[ ${version} = "7" ]]; then
 			if [[ ${bit} = "x86_64" ]]; then
-				wget -N -O kernel-c7.rpm https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/ES1FqBSXMZlJlPgYrSagBCUBb6N2_srwS_e59B2Y74Rksg?download=1
-				wget -N -O kernel-headers-c7.rpm https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/ERUwIDLM1XdDt4xxv13xJOkBfpaQby-u2XdEr3d9I6ixag?download=1
+				wget -N -O kernel-c7.rpm https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EXtqy74S1pNDp40d8fQsqpwBeiNe1k2mToYxChPBPR1q3A?download=1
+				wget -N -O kernel-headers-c7.rpm https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/ET3mScy1El5Ekk0IwZEzE5UBJzzs70-XuJ8Q74HNiQp5Pg?download=1
 				
 				yum install -y kernel-c7.rpm
 				yum install -y kernel-headers-c7.rpm
 			
-				kernel_version="5.5.8_xanmod6"
+				kernel_version="5.7.7_xanmod1"
 			else
 				echo -e "${Error} 还在用32位内核，别再见了 !" && exit 1
 			fi
@@ -286,32 +286,18 @@ installxanmod(){
 				kernel_version="5.5.1_xanmod1"
 		fi
 		
-	elif [[ "${release}" == "debian" ]]; then
-		if [[ ${version} = "9" ]]; then
+	elif [[ "${release}" == "debian" || "${release}" == "ubuntu" ]]; then
 			if [[ ${bit} = "x86_64" ]]; then
-				wget -N -O linux-headers-d9.deb https://github.com/ylx2016/kernel/releases/download/5.5.1xanmod/linux-headers-5.5.1-xanmod1_5.5.1-xanmod1-1-d9_amd64.deb
-				wget -N -O linux-image-d9.deb https://github.com/ylx2016/kernel/releases/download/5.5.1xanmod/linux-image-5.5.1-xanmod1_5.5.1-xanmod1-1-d9_amd64.deb
+			wget -N -O linux-headers-d10.deb https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EdxDotoLFSpElapqPjyHXz0Balr9KrU4-tbkpfu-CzfrWA?download=1
+			wget -N -O linux-image-d10.deb https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EftOD6IE4V1Hl3l6Rh7rQioBMfQIu2nfb7lCVE-PsMo_HQ?download=1
 				
-				dpkg -i linux-image-d9.deb
-				dpkg -i linux-headers-d9.deb
+			dpkg -i linux-image-d10.deb
+			dpkg -i linux-headers-d10.deb
 				
-				#kernel_version="4.14.168-bbrplus"
-			else
-				echo -e "${Error} 还在用32位内核，别再见了 !" && exit 1
-			fi	
-		elif [[ ${version} = "10" ]]; then
-			if [[ ${bit} = "x86_64" ]]; then
-				wget -N -O linux-headers-d10.deb https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EcwO-0rZ3VlFjBNHYoVxy_IBgn2E_viwNx0l2fGHtRwyJw?download=1
-				wget -N -O linux-image-d10.deb https://chinagz2018-my.sharepoint.com/:u:/g/personal/ylx_chinagz2018_onmicrosoft_com/EcJBiKjxLp5Lq0tkTUlXcfEBH2wRr_n83jV4aVvii3q2Fg?download=1
-					
-				dpkg -i linux-image-d10.deb
-				dpkg -i linux-headers-d10.deb
-				
-				kernel_version="5.5.8-xanmod6"
-			else
-				echo -e "${Error} 还在用32位内核，别再见了 !" && exit 1
-			fi		
-		fi			
+			kernel_version="5.7.7-xanmod1"
+		else
+			echo -e "${Error} 还在用32位内核，别再见了 !" && exit 1	
+		fi		
 	fi
 	
 	cd .. && rm -rf xanmod
@@ -561,7 +547,8 @@ startlotserver(){
 		apt-get update
 		apt-get install ethtool
 	fi
-	bash <(wget -qO- https://git.io/lotServerInstall.sh) install
+	#bash <(wget -qO- https://git.io/lotServerInstall.sh) install
+	bash <(wget --no-check-certificate -qO- https://github.com/xidcn/LotServer_Vicer/raw/master/Install.sh) install
 	sed -i '/advinacc/d' /appex/etc/config
 	sed -i '/maxmode/d' /appex/etc/config
 	echo -e "advinacc=\"1\"
@@ -740,20 +727,26 @@ gototcp(){
 	wget -N "https://github.000060000.xyz/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
 }
 
+#切换到秋水逸冰BBR安装脚本
+gototeddysun_bbr(){
+	clear
+	wget https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+}
+
 #开始菜单
 start_menu(){
 clear
 echo && echo -e " TCP加速 一键安装管理脚本 不卸载内核版本 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
- 更新内容及反馈:  https://blog.ylx.me/archives/783.html
- 母鸡慎用
-  
+ 更新内容及反馈:  https://blog.ylx.me/archives/783.html 运行./tcpx.sh再次调用本脚本 母鸡慎用
+ 
  ${Green_font_prefix}0.${Font_color_suffix} 升级脚本
  ${Green_font_prefix}9.${Font_color_suffix} 切换到卸载内核版本
+ ${Green_font_prefix}8.${Font_color_suffix} 切换到秋水逸冰BBR安装脚本
 ————————————内核管理————————————
- ${Green_font_prefix}1.${Font_color_suffix} 安装 BBR原版内核 - 5.6.15
+ ${Green_font_prefix}1.${Font_color_suffix} 安装 BBR原版内核 - 5.6.15/5.7.7
  ${Green_font_prefix}2.${Font_color_suffix} 安装 BBRplus版内核 - 4.14.129
  ${Green_font_prefix}3.${Font_color_suffix} 安装 Lotserver(锐速)内核 - 多种
- ${Green_font_prefix}4.${Font_color_suffix} 安装 xanmod版内核 - 5.5.1/5.5.8
+ ${Green_font_prefix}4.${Font_color_suffix} 安装 xanmod版内核 - 5.5.1/5.7.7
  ${Green_font_prefix}5.${Font_color_suffix} 安装 BBR2测试版内核 - 5.4.0
  ${Green_font_prefix}6.${Font_color_suffix} 安装 Zen版内核 - 5.5.2/5.5.10
  ${Green_font_prefix}7.${Font_color_suffix} 安装 BBRplus新版内核 - 4.14.182
@@ -809,6 +802,9 @@ case "$num" in
 	7)
 	check_sys_bbrplusnew	
 	;;
+	8)
+	gototeddysun_bbr
+	;;
 	9)
 	gototcp
 	;;
@@ -847,7 +843,7 @@ case "$num" in
 	;;
 	*)
 	clear
-	echo -e "${Error}:请输入正确数字 [0-11]"
+	echo -e "${Error}:请输入正确数字 [0-23]"
 	sleep 5s
 	start_menu
 	;;
@@ -918,6 +914,7 @@ BBR_grub(){
         fi
     elif [[ "${release}" == "debian" || "${release}" == "ubuntu" ]]; then
         /usr/sbin/update-grub
+		#exit 1
     fi
 }
 
@@ -1048,11 +1045,9 @@ check_sys_xanmod(){
 		else
 			echo -e "${Error} xanmod内核不支持当前系统 ${release} ${version} ${bit} !" && exit 1
 		fi
-	elif [[ "${release}" == "debian" ]]; then
-		if [[ ${version} = "9" || ${version} = "10" ]]; then
+	elif [[ "${release}" == "debian" || "${release}" == "ubuntu" ]]; then
+		if [[ ${version} = "8" || ${version} = "9" || ${version} = "10" || ${version} = "16" || ${version} = "18" || ${version} = "19" || ${version} = "20" ]]; then
 			installxanmod
-		else
-			echo -e "${Error} xanmod内核不支持当前系统 ${release} ${version} ${bit} !" && exit 1
 		fi
 	elif [[ "${release}" == "ubuntu" ]]; then
 			echo -e "${Error} xanmod内核不支持当前系统 ${release} ${version} ${bit} ,去xanmod.org 官网安装吧!" && exit 1
